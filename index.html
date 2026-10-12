@@ -225,7 +225,7 @@ ol.steps5{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:
     <text class="elabel" x="565" y="395">Fretboard first, then the state that fits what the player plays</text>
     <text class="elabel" x="565" y="410">After "I can't hear you!": No sound first</text>
     <text class="elabel" x="578" y="548">Solved, or X closes the modal</text>
-    <text class="elabel" x="700" y="622" text-anchor="middle">Next hit</text>
+    <text class="elabel" x="700" y="622" text-anchor="middle">2 hits</text>
     <text class="tag" x="20" y="20">FIRST TIME</text>
     <text class="tag" x="480" y="20">AUTOMATIC</text>
     <text class="tag" x="250" y="161">MANUAL</text>
@@ -264,13 +264,13 @@ ol.steps5{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:
   <div class="panel-head"><h2 id="rules-h">Design notes</h2><span class="legend"><span>Principles behind the prototype</span></span></div>
   <div class="brief">
     <div class="brief-row"><h3>Automatic, manual or both?</h3><p>Both. Pico is always there to be tapped, and it also steps in by itself when the player seems to need it. The two never compete: what happens automatically can only suggest or point, and the player alone decides to open a lesson. Help is offered, never imposed.</p></div>
-    <div class="brief-row"><h3>Reading the situation, not the player</h3><p>The signals come from the game's own sound detection: whether notes are hit, whether the same note keeps failing, and whether anything is heard at all. A wrong note and a silent room are different problems, so they get different help: a musical hint for the first, a setup check for the second. Every threshold is a starting estimate, listed in the rules and thresholds below.</p></div>
+    <div class="brief-row"><h3>Reading the situation, not the player</h3><p>The signals come from the game's own sound detection: whether notes are hit, whether the same note keeps failing, and whether anything is heard at all. A wrong note and a silent room are different problems, so they get different help: a musical hint for the first, a setup check for the second.</p></div>
     <div class="brief-row"><h3>Quiet by default, never patronising</h3><p>Help grows only as fast as the need. A reaction comes first, a visual cue after repeated misses, an offer of help after that, and a lesson only on request. Cues are pictures or a few words, are about the note and never about the player, and are not repeated once ignored. Pico behaves like a friend sitting next to the player, not a teacher grading the performance.</p></div>
     <div class="brief-row"><h3>The player stays in control</h3><p>Every cue expires on its own or can be waved away with a single tap, and nothing needs a close button. Pico can be tapped at any moment, so help can be revisited as often as wanted at no cost. Declining returns to play with a short countdown, so the player is never dropped back into a moving game.</p></div>
-    <div class="brief-row"><h3>Momentum comes first</h3><p>The game never pauses by itself. Cues sit outside the note lane and the controls, stay short, and leave without being asked. The only pause is the one the player chooses, and a lesson is built to be left quickly: it asks for one correct play and then hands the game back.</p></div>
+    <div class="brief-row"><h3>Momentum comes first</h3><p>The game never pauses by itself. Cues sit outside the note lane and the controls, stay short, and leave without being asked. The only pause is the one the player chooses, and a lesson is built to be completed or dismissed quickly.</p></div>
     <div class="brief-row"><h3>Honest when it can't hear</h3><p>Audio recognition will sometimes be uncertain, and Pico never pretends otherwise. It says what it notices, not what the player did wrong, and it separates "I heard something" from "I heard nothing". When nothing is heard the help is about the setup, with simple checks, and it never blames the player's playing. As soon as a note is heard, the help moves to the state that fits it.</p></div>
-    <div class="brief-row"><h3>Unblocked is earned by playing</h3><p>Help is judged by what happens next, not by a button saying "got it". A single clean hit can be luck, so two clean plays in a row count as unblocked, and only then does Pico step back to its usual role. If the player is still missing, Pico stays available without escalating.</p></div>
-    <div class="brief-row"><h3>Easy to turn off</h3><p>A PICO card in Settings > Gameplay switches Pico Off or On, with On by default. Off removes it completely, and the player brings it back from the same place. The switch lives only in Settings, so it can't be flipped by accident during play.</p></div>
+    <div class="brief-row"><h3>Unblocked is earned by playing</h3><p>Help is judged by what happens next, not by a button saying "got it". Playing the note right in the lesson only completes the lesson. The player counts as unblocked after two correct notes in a row back in the game, with no help on screen, whether they follow a lesson or visual hints. Only then does Pico step back to its usual role. If the player keeps missing, Pico stays available without escalating.</p></div>
+    <div class="brief-row"><h3>Easy to turn off</h3><p>A Pico section in Settings > Gameplay switches Pico Off or On, with On by default. Off removes it completely, so the player plays without a helper. It is an admin control meant for parents, who decide whether their child plays with Pico, and it can be turned back On from the same place. The switch lives only in Settings, so it can't be flipped by accident during play.</p></div>
   </div>
 </section>
 
@@ -281,12 +281,13 @@ ol.steps5{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:
     <div class="brief-row"><h3>Correct hit</h3><p>Pico cheers on every correct hit.</p></div>
     <div class="brief-row"><h3>1st miss</h3><p>Pico gives a kind tilt.</p></div>
     <div class="brief-row"><h3>2 misses in a row</h3><p>Pico looks worried.</p></div>
-    <div class="brief-row"><h3>Visual hint</h3><p>After 2 consecutive misses, a ring and light mark the next note about 2 seconds before it reaches the strike line. Hints are at least 15 seconds apart.</p></div>
+    <div class="brief-row"><h3>Visual hint</h3><p>After 2 consecutive misses, a ring and light mark the next note about 2 seconds before it reaches the strike line.</p></div>
     <div class="brief-row"><h3>"Stuck? I can help!"</h3><p>Appears after 3 visual hints without a correct hit.</p></div>
     <div class="brief-row"><h3>"I can't hear you!"</h3><p>Appears after 3 missed notes with no sound detected.</p></div>
     <div class="brief-row"><h3>Balloon duration</h3><p>Balloons stay about 6 seconds, then fade.</p></div>
     <div class="brief-row"><h3>Tutoring/troubleshooting modal timeout</h3><p>The modal opens on the fretboard and switches to No sound after about 10 seconds with no microphone input. After "I can't hear you!" it opens directly on No sound.</p></div>
-    <div class="brief-row"><h3>Unblocking</h3><p>2 clean plays in a row count as unblocked.</p></div>
+    <div class="brief-row"><h3>Lesson complete</h3><p>2 clean plays in a row inside the lesson complete it and return the player to the game.</p></div>
+    <div class="brief-row"><h3>Unblocked</h3><p>2 correct notes in a row back in the game, with no help on screen, count as unblocked. This applies after a lesson and after visual hints.</p></div>
   </div>
 </section>
 
@@ -730,7 +731,7 @@ const STEPS={
   scene:()=>dim(.82)+`<g filter="url(#sh)">${panel({title:'That\'s it! Once more.',foot:'One more to lock it in',solid:true,dots:1})}</g><g transform="rotate(-8 ${F3.x} ${F3.y-110})"><text class="sv-d" x="${F3.x+60}" y="${F3.y-96}" font-size="92" text-anchor="middle" fill="#fff" stroke="#F08A24" stroke-width="14" paint-order="stroke" stroke-linejoin="round">Perfect</text></g>`+pico('confirm',{x:F3.x-122,y:F3.y+205,s:.92})+micBtn('full'),
   player:'Presses fret 3 and plays it cleanly.',
   pico:'The gold target turns solid and the game\'s usual "Perfect" appears. Pico stays close to the note, pointing at it with a happy face, as if confirming it. Two dots track progress, and one more clean play locks it in.',
-  why:'One clean play can be luck. Two in a row is the bar for being unblocked. The game already celebrates hits, so Pico adds a smile and a pointing hand and no second celebration.',
+  why:'One clean play can be luck. Two in a row complete the lesson, and being unblocked is judged later, in the game. The game already celebrates hits, so Pico adds a smile and a pointing hand and no second celebration.',
   next:[['return','Second clean play']]},
  return:{t:'Back to playing',sub:'Pico steps back',kind:'Exit',base:'start',def:0,
   vars:[
@@ -739,19 +740,19 @@ const STEPS={
   player:'Has played the note cleanly twice in a row, or closed the card.',
   pico:'During play, Pico waves and flies back to its spot next to TAB. The card closes, and a short 3, 2, 1 gives the player time to get ready before the notes move again. If help started on the results or Try again screen, Pico returns there instead, cheers from the top right with a short message such as "Well done! Try again?", and replay and overworld stay untouched. No countdown is needed.',
   why:'The return is part of the reward. The player is handed the game back straight away and is never left in a tutorial. The countdown means no notes are lost to the pause. On the end screen the message points to the next step, so the lesson turns straight into another attempt.',
-  next:[['unblocked','Next real hit']]},
- unblocked:{t:'Unblocked',sub:'Hit without help',kind:'Success',base:'success',
-  cap:'Frame 11. The next real hit lands with no help on screen.',
+  next:[['unblocked','2 clean hits in the game']]},
+ unblocked:{t:'Unblocked',sub:'2 hits without help',kind:'Success',base:'success',
+  cap:'Frame 11. Two correct notes in a row land with no help on screen.',
   scene:()=>helpBtn('thumbs'),
-  player:'Hits the next real fret-3 note without calling Pico.',
+  player:'Plays two correct notes in a row back in the game, after a lesson or after visual hints, without calling Pico.',
   pico:'Gives a thumbs-up from its spot. The game gives its normal "Perfect" feedback, the score goes up and Pico goes back to waiting. Nothing else is added.',
-  why:'This is the real test: a clean hit on the next real attempt without calling Pico. We would track time to first correct hit, how often players call Pico again and repeat misses on the next challenge.',
+  why:'This is the real test: two clean notes in a row in the game, without calling Pico. One could be luck. We would track time to first correct hit, how often players call Pico again and repeat misses on the next challenge.',
   next:[['round','Back to normal play']]},
  setting:{t:'Pico ON/OFF',sub:'Settings > Gameplay',kind:'Setting · Any time',base:'gsettings',def:0,
   cap:'Frame 12. Settings > Gameplay has a new PICO card, On by default.',scene:()=>settingsPicoCard(true),
-  player:'Opens Settings from the Paused screen, or from the home screen, and chooses Gameplay. Some players, or parents, may prefer to play without a helper.',
-  pico:'A new PICO card sits with the other Gameplay options, labelled "live helper", with Off and On radio buttons in the game\'s own style. On is the default. When Off, Pico disappears completely from gameplay: no character, no reactions, hints or balloons, and no end screen messages. The Tuning tip on Try again returns. To bring Pico back, the player chooses On in the same card.',
-  why:'A helper that cannot be switched off becomes a nuisance for confident players and for parents who want a quiet screen. The switch sits next to the other Gameplay options, and only in Settings, so a child cannot turn Pico off by accident while playing.',
+  player:'Opens Settings from the Paused screen, or from the home screen, and chooses Gameplay. Some players, or their parents, may prefer to play without a helper.',
+  pico:'A new PICO card sits with the other Gameplay options, labelled "live helper", with Off and On buttons in the game\'s own style. On is the default. When Off, Pico disappears completely from gameplay: no character, no reactions, hints or balloons, and no end screen messages. The Tuning tip on Try again returns. Choosing On in the same card brings Pico back.',
+  why:'A helper that cannot be switched off annoys confident players and parents who want a quiet screen. It is an admin control for parents, kept only in Settings, so a child cannot turn Pico off by accident while playing.',
   next:[['round','Back to the game']]}
 };
 function cardPicoR(mood){ return pico(mood,{x:1640,y:940,s:.92}); }
@@ -799,7 +800,7 @@ const SEQ=['intro','round','peek','hint','listen','offer','help','teach','wrong'
 /* ---------- flow diagram nodes ---------- */
 const NODES=[['intro',20,30],['round',250,30],['peek',480,30],['hint',710,30],['offer',940,30],['listen',480,170],['help',250,170],['teach',250,315,300,64],
  ['wrong',250,460,190,64],['nosound',460,460,190,64],['quiet',670,460,190,64],['correct',880,460,190,64],['return',510,600],['unblocked',730,600],['setting',20,600]];
-const SUBS={listen:'No sound, 3+ notes',intro:'Meet Pico',round:'Pico waits',peek:'Hits and misses',hint:'2 misses, next note',offer:'End screens',help:'Any time, pauses play',teach:'Opens on the fretboard',wrong:'Open string played',quiet:'Mic hears little',nosound:'No input for ~10 s',correct:'1 of 2 plays',return:'Pico steps back',unblocked:'Hit without help',setting:'Settings > Gameplay'};
+const SUBS={listen:'No sound, 3+ notes',intro:'Meet Pico',round:'Pico waits',peek:'Hits and misses',hint:'2 misses, next note',offer:'End screens',help:'Any time, pauses play',teach:'Opens on the fretboard',wrong:'Open string played',quiet:'Mic hears little',nosound:'No input for ~10 s',correct:'1 of 2 plays',return:'Pico steps back',unblocked:'2 hits without help',setting:'Settings > Gameplay'};
 const NS='http://www.w3.org/2000/svg';
 const nodesG=document.getElementById('nodes');
 const sevColor={wrong:'#D9483B',quiet:'var(--amber)',nosound:'var(--grey)',correct:'var(--green)'};
