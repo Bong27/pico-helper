@@ -163,7 +163,7 @@ ol.steps5{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:
   <div>
     <div class="kicker">Notey's World · Contextual helper</div>
     <h1>Pico, your guitar friend</h1>
-    <p>Pico is a small guitar-pick friend who stands next to the strings. It cheers when the guitar is heard, looks kind when a note is off, and steps in with a hint or a short lesson when a player keeps missing the same note.</p>
+    <p>Pico is a small living guitar pick that keeps the player company in Notey's World. It is designed to feel like part of the game: a friendly companion that helps when it is needed and is always there when the player asks.</p>
     <div class="meta">
       <a class="chip chip-link" href="https://www.figma.com/design/ghP2AszqSCGeatcALBXOyQ?node-id=23-920" target="_blank" rel="noopener"><svg width="10" height="15" viewBox="0 0 38 57" aria-hidden="true"><path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="currentColor" opacity=".55"/><path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" fill="currentColor" opacity=".55"/><path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="currentColor" opacity=".55"/><path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="currentColor" opacity=".55"/><path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="currentColor" opacity=".55"/></svg>Figma file</a>
       <a class="chip chip-link" href="https://www.figma.com/proto/ghP2AszqSCGeatcALBXOyQ?page-id=23%3A920&node-id=23-921" target="_blank" rel="noopener"><svg width="10" height="15" viewBox="0 0 38 57" aria-hidden="true"><path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="#1abcfe"/><path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" fill="#0acf83"/><path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#ff7262"/><path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#f24e1e"/><path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#a259ff"/></svg>Figma prototype</a>
@@ -611,7 +611,7 @@ function ask(text){
   const x=150,y=600,w=1220,h=480;
   return `<g filter="url(#sh)">${bubble(x,y,w,h,[],{side:'down',x:PX+14,y:1160,nohand:1},40)}</g>
   <text class="sv-t" style="font-weight:700" x="${x+w/2}" y="${y+170}" font-size="74" text-anchor="middle" fill="#285A8C">${text}</text>
-  ${bigBtn(x+70,y+240,500,150,'Yes, help me','#F4B63A','#1B2F5B')}${bigBtn(x+650,y+240,500,150,'No, thanks','#3F6FC4','#fff')}`;
+  ${bigBtn(x+70,y+240,500,150,'Yes','#F4B63A','#1B2F5B')}${bigBtn(x+650,y+240,500,150,'Not now','#3F6FC4','#fff')}`;
 }
 function ringBox(x,y,w,h){ return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="26" fill="none" stroke="${GOLD}" stroke-width="12"/><rect class="pulse" x="${x}" y="${y}" width="${w}" height="${h}" rx="26" fill="none" stroke="${GOLD}" stroke-width="6" opacity=".6"/>`; }
 function askPanel(){
@@ -680,7 +680,7 @@ const STEPS={
   cap:'Frame 3. Three silent notes: Pico cups an ear and says it cannot hear.',
   scene:()=>`<g filter="url(#sh)">${bubble(140,880,640,190,["I can't hear you!"],{side:'down',x:PX+14,y:1150,nohand:1},60)}</g>`+micBtn('muted')+picoGlow()+helpBtn('listen'),
   player:'Plays, but the mic hears nothing. The guitar may be too far away, the room too noisy, or the mic not picking it up. Every note misses, but not because of the fingering.',
-  pico:'After three notes in a row with no sound, Pico cups an ear and a small balloon says "I can\'t hear you!" It fades by itself after about 6 seconds, with no close button, and nothing pauses. A tap on Pico or the balloon pauses the game and asks "Do you want me to help?" first. If sound returns, the balloon goes away at once. In this case only, Yes opens the tutoring/troubleshooting modal directly on the No sound card, not on a fret lesson.',
+  pico:'After three notes in a row with no sound, Pico cups an ear and a small balloon says "I can\'t hear you!" It fades by itself after about 6 seconds, with no close button, and nothing pauses. A tap on Pico or the balloon pauses the game and asks "Want some help?" first. If sound returns, the balloon goes away at once. In this case only, Yes opens the tutoring/troubleshooting modal directly on the No sound card, not on a fret lesson.',
   why:'No sound is a setup problem, not a skill problem, so a fret hint would be the wrong help. It says what Pico notices, not what the player did wrong.',
   next:[['help','Taps Pico or the balloon'],['round','Sound returns']]},
  offer:{t:'Results outro',sub:'On the end screens',kind:'Helper · Automatic',base:'results',def:0,
@@ -693,7 +693,7 @@ const STEPS={
   next:[['teach','Show me'],['round','Replay or overworld']]},
  help:{t:'Tap Pico',sub:'Any time, pauses play',kind:'Entry · Manual',base:'start',
   cap:'Entry on any tap. A tap on Pico or on a balloon pauses the game and asks if Pico can help.',
-  scene:()=>micBtn('muted')+dim(.6)+ask('Do you want me to help?')+helpBtn('wave'),
+  scene:()=>micBtn('muted')+dim(.6)+ask('Want some help?')+helpBtn('wave'),
   player:'Taps Pico, with or without having missed anything.',
   pico:'Waves and opens a balloon with a simple question to check whether the player wants help. The same question appears wherever Pico is tapped, at every step of the gameplay. Yes moves the player to the tutoring/troubleshooting modal. A tap outside the balloon counts as No.',
   why:'One pattern, repeated consistently, means a child learns it once and for all. The tap pauses the game because the player chose it, so they can read and answer without losing notes. Players who already know they are lost should not have to fail first, and can ask for Pico\'s help at any time.',
